@@ -31,9 +31,8 @@ X = [ones(m, 1) X];
 %       
 
 
-[nouse,p]=max(all_theta*X.',[],1)
+pred=all_theta*X
 
-p=p'
 
 
 

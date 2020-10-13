@@ -26,9 +26,9 @@ mid=sigmoid(Theta1*X')
 mid=[ones(m,1)' ; mid]
 out=sigmoid(Theta2*mid)
 
-[nouse,p]=max(out,[],1)
+[nouse,p]=max(out,[],1)'
 
-p=p'
+
 
 
 
