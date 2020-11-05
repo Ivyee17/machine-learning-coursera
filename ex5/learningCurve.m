@@ -13,7 +13,7 @@ function [error_train, error_val] = ...
 %   dataset sizes from 1 up to m. In practice, when working with larger
 %   datasets, you might want to do this in larger intervals.
 %
-
+warning('off')
 % Number of training examples
 m = size(X, 1);
 
@@ -42,13 +42,18 @@ error_val   = zeros(m, 1);
 %
 % Hint: You can loop over the examples with the following:
 %
-%       for i = 1:m
+% theta2 = trainLinearReg(Xval,yval,lambda)
+
+for i = 1:m
+    theta1 = trainLinearReg(X(1:i,:),y(1:i,:),lambda)
+    [error_train(i),nouse]=linearRegCostFunction(X(1:i,:),y(1:i,:),theta1,0)
+    [error_val(i),nouse]=linearRegCostFunction(Xval,yval,theta1,0)
 %           % Compute train/cross validation errors using training examples 
 %           % X(1:i, :) and y(1:i), storing the result in 
 %           % error_train(i) and error_val(i)
 %           ....
 %           
-%       end
+end
 %
 
 % ---------------------- Sample Solution ----------------------

@@ -21,8 +21,22 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
+for i = 1: size(X,1)
+    xi=X(i,:)
+    
+    
+    mintox=10000
+    mincenter=0
+    for j = 1:K
+        center = centroids(j,:)
+        if sum((xi-center).^2)<mintox
+            mincenter=j
+            mintox=sum((xi-center).^2)
+        end
+    end
+    idx(i)=mincenter
+end
+    
 
 
 

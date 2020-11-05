@@ -21,11 +21,27 @@ sigma = 0.3;
 %
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
-%
+%  C and sigma choose from : 0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30
 
-
-
-
+Ccandi=[0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
+sigmacandi=[0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]
+min_loss=1000
+minC=0
+minsigma=0
+for i = Ccandi
+    for j = sigmacandi
+        model=svmTrain(X, y, i, @(x1, x2)gaussianKernel(x1, x2, j));
+        predictions = svmPredict(model, Xval);
+        loss=mean(double(predictions ~= yval));
+        if loss<min_loss
+            minC=i
+            minsigma=j
+            min_loss=loss
+        end
+    end
+end
+C=minC
+sigma=minsigma
 
 
 
