@@ -24,7 +24,14 @@ for epsilon = min(pval):stepsize:max(pval)
     %       of 0's and 1's of the outlier predictions
 
 
-
+    algotrue=sum(pval<epsilon)
+    % algofalse=size(pval,1)-algofalse
+    realtrue=sum(yval)
+    % realfalse=size(yval,1)-realfalse
+    realalgotrue=sum((pval<epsilon)+yval == 2)
+    precision= realalgotrue / algotrue
+    recall=realalgotrue/ realtrue
+    F1=2*precision*recall/(precision+recall)
 
 
 
